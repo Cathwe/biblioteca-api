@@ -20,7 +20,7 @@ API RESTful para gestión de libros (CRUD completo) con Node.js, Express y MySQL
 ## 🛠️ Instalación
 
 ``` 
-git clone https://github.com/tu-usuario/biblioteca-api.git
+git clone https://github.com/Cathwe/biblioteca-api.git
 cd biblioteca-api
 npm install
 ⚙️ Configuración
@@ -31,7 +31,7 @@ DB_USER=root
 DB_PASSWORD=
 DB_NAME=biblioteca_db
 PORT=3000
-SESSION_SECRET=mi_secreto_seguro
+SESSION_SECRET=mi_clave_secreta
 2.	Ejecutar script SQL (phpMyAdmin o terminal)
 3.	Iniciar servidor:
  
