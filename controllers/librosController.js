@@ -23,7 +23,8 @@ const PATRONES = {
 async function listarLibros(req, res) {
     try {
         // Verificar si hay parámetro de búsqueda
-        const { buscar: terminoBusqueda } = req.query;
+        const { nombre, buscar } = req.query;
+        const terminoBusqueda = nombre || buscar;
 
         let libros;
         if (terminoBusqueda && terminoBusqueda.trim() !== '') {
