@@ -25,18 +25,9 @@ npm install
 
 ## ⚙️ Configuración
 
-Crear archivo `.env`:
+Crear un archivo `.env` en la raíz del proyecto con las variables necesarias para la conexión a MySQL y configuración del servidor.
 
-```env
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=
-DB_NAME=biblioteca_db
-PORT=3000
-SESSION_SECRET=mi_clave_secreta
-```
-
-Ejecutar el script SQL desde phpMyAdmin o MySQL.
+Luego importar el archivo `sql/database.sql` desde phpMyAdmin o MySQL.
 
 Iniciar servidor:
 
