@@ -1,4 +1,3 @@
-markdown
 # 📚 Biblioteca API
 
 API RESTful para gestión de libros (CRUD completo) con Node.js, Express y MySQL.
@@ -6,69 +5,92 @@ API RESTful para gestión de libros (CRUD completo) con Node.js, Express y MySQL
 ## 🚀 Características
 
 - CRUD completo (Create, Read, Update, Delete)
-- Autenticación por sesión (cookie)
+- API Key para endpoints protegidos
 - Validaciones en capa de negocio
 - Búsqueda por título/autor
-- Códigos de estado HTTP correctos
 - Arquitectura por capas (routes → controllers → models)
 
 ## 📋 Requisitos previos
 
 - Node.js (v16+)
-- MySQL (XAMPP / WAMP / independiente)
+- MySQL
 
 ## 🛠️ Instalación
 
-``` 
+```bash
 git clone https://github.com/Cathwe/biblioteca-api.git
 cd biblioteca-api
 npm install
-⚙️ Configuración
-1.	Crear archivo .env:
- 
+```
+
+## ⚙️ Configuración
+
+Crear archivo `.env`:
+
+```env
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=
 DB_NAME=biblioteca_db
 PORT=3000
 SESSION_SECRET=mi_clave_secreta
-2.	Ejecutar script SQL (phpMyAdmin o terminal)
-3.	Iniciar servidor:
- 
+```
+
+Ejecutar el script SQL desde phpMyAdmin o MySQL.
+
+Iniciar servidor:
+
+```bash
 npm run dev
-📡 Endpoints de la API
-Método	Ruta	Descripción	Requiere login
-GET	/api/libros	Listar todos los libros	❌
-GET	/api/libros?buscar= o	Buscar libros	❌
-GET	/api/libros/:id	Obtener libro por ID	❌
-POST	/api/libros	Crear nuevo libro	✅
-PUT	/api/libros/:id	Actualizar libro	✅
-DELETE	/api/libros/:id	Eliminar libro	✅
-POST	/login	Iniciar sesión	❌
-POST	/logout	Cerrar sesión	✅
+```
 
-🧪 Ejemplos de uso
-Login
- 
-curl -X POST http://localhost:3000/login \
-  -H "Content-Type: application/json" \
-  -d '{"usuario":"admin","password":"123"}'
-Crear libro
- 
-curl -X POST http://localhost:3000/api/libros \
-  -H "Content-Type: application/json" \
-  -d '{"titulo":"El Alquimista","autor":"Paulo Coelho","anio_publicacion":1988,"genero":"Ficción"}'
-📁 Estructura del proyecto
- 
+## Endpoints
+
+| Método | Ruta | Descripción | Auth requerida |
+|--------|------|-------------|----------------|
+| GET | /api/libros | Listar todos los libros | No |
+| GET | /api/libros?nombre= | Buscar libros por nombre/título | No |
+| GET | /api/libros/:id | Obtener libro por ID | No |
+| POST | /api/libros | Crear nuevo libro | 🔒 API Key |
+| PUT | /api/libros/:id | Actualizar libro | 🔒 API Key |
+| DELETE | /api/libros/:id | Eliminar libro | 🔒 API Key |
+
+## Seguridad
+
+### API Key
+
+Los endpoints POST, PUT y DELETE requieren el siguiente header:
+
+```txt
+x-api-key: eval-s12-2024
+```
+
+Si el header no se envía correctamente, el servidor responde con status 401 Unauthorized.
+
+### HTTPS
+
+HTTPS protege la comunicación entre cliente y servidor mediante cifrado.
+
+Esto evita que terceros puedan leer o modificar los datos enviados por la red.
+
+En producción es importante porque protege credenciales, cookies y datos sensibles.
+
+## 📁 Estructura del proyecto
+
+```txt
 biblioteca-api/
-├── db/           - Conexión a MySQL
-├── models/       - Consultas SQL
-├── controllers/  - Lógica de negocio y validaciones
-├── routes/       - Definición de rutas
-├── middlewares/  - Autenticación y logging
-├── public/       - Frontend (HTML/CSS/JS)
-├── .env          - Variables de entorno
-└── server.js     - Punto de entrada
+├── db/
+├── models/
+├── controllers/
+├── routes/
+├── middlewares/
+├── services/
+├── public/
+├── sql/
+├── .env
+└── server.js
+```
 
-👨‍💻 Autor
-[Camila Ávila Salas]
+## 👨‍💻 Autor
+
+Camila Ávila Salas
